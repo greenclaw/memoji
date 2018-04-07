@@ -1,0 +1,104 @@
+@import "_sprite.styl"
+@import "_mixins.styl"
+@import "_vars.styl"
+
+*
+  box-sizing border-box
+  margin 0
+
+body
+  background-color $background-color
+
+section.section-main
+  display flex
+  flex-flow column wrap
+  align-items center
+  
+h1
+  line-height 47px
+  font-size 42px
+  font-family Arial, sans-serif
+  color #434344
+  margin 40px auto
+
+.card-side
+  width 100%
+  height 100%
+  position absolute
+  display block
+
+.card-invisible
+  @extends .card-side
+  backface-visibility hidden
+
+.memoji-card
+  @extends .card-side
+  transform-style preserve-3d
+  transition transform $card-animation-speed
+  border 5px solid white
+  border-radius 9px
+  box-shadow 1px 1px 5px rgba(0,0,0,0.5)
+
+.memoji-card.active
+    transform rotateY( 180deg )
+    
+.memoji-back
+  @extends .card-invisible
+  background-color white
+  vertical-align middle
+  text-align center
+  display flex
+  justify-content space-around
+  align-items center
+  transform rotateY( 180deg )
+  
+.memoji-front
+  @extends .card-invisible
+  background linear-gradient(to top right, $primary-color-1, $primary-color-2)
+  
+.wrapper
+  width 595px
+  height 400px
+  height 440px
+  display flex
+  flex-flow row wrap
+  justify-content space-between
+  align-content space-between
+  .memoji-item
+    width 130px
+    height 130px
+    perspective 600px
+    position relative
+    
+    
+// emoji-classes
+
+.icon-memoji
+  width 100%
+  height 100%
+
+.icon-bear-face
+  @extends .icon-memoji
+  sprite($s-bear-face)
+
+.icon-koala-face
+  @extends .icon-memoji
+  sprite($s-koala-face)
+
+
+.icon-lion-face
+  @extends .icon-memoji
+  sprite($s-lion-face)
+
+
+.icon-panda-face
+  @extends .icon-memoji
+  sprite($s-panda-face)
+
+.icon-tiger-face
+  @extends .icon-memoji
+  sprite($s-tiger-face)
+
+.icon-unicorn-face
+  @extends .icon-memoji
+  sprite($s-unicorn-face)
