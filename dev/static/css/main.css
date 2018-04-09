@@ -20,6 +20,19 @@ h1 {
   color: #434344;
   margin: 40px auto;
 }
+.wrapper {
+  width: 595px;
+  height: 400px;
+  height: 440px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+}
 .card-side,
 .card-invisible,
 .memoji-card,
@@ -29,6 +42,7 @@ h1 {
   height: 100%;
   position: absolute;
   display: block;
+  border-radius: 9px;
 }
 .card-invisible,
 .memoji-back,
@@ -39,11 +53,9 @@ h1 {
 .memoji-card {
   transform-style: preserve-3d;
   transition: transform 0.5s;
-  border: 5px solid #fff;
-  border-radius: 9px;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
-.memoji-card.active {
+.active {
   transform: rotateY(180deg);
 }
 .memoji-back {
@@ -59,26 +71,98 @@ h1 {
   transform: rotateY(180deg);
 }
 .memoji-front {
-  background: linear-gradient(to top right, #51a894, #2f658a);
+  border: 5px solid #fff;
+  background: linear-gradient(to bottom left, #51a894, #2f658a);
 }
-.wrapper {
-  width: 595px;
-  height: 400px;
-  height: 440px;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-flow: row wrap;
-      flex-flow: row wrap;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
-  -ms-flex-line-pack: justify;
-      align-content: space-between;
-}
-.wrapper .memoji-item {
+.memoji-item {
   width: 130px;
   height: 130px;
   perspective: 600px;
   position: relative;
+}
+.memoji-item:hover {
+  cursor: pointer;
+}
+.winned {
+  transform: rotateY(180deg);
+}
+.winned .memoji-back {
+  background-color: #5ad66f;
+}
+.winned:hover {
+  cursor: default;
+}
+.losed {
+  transform: rotateY(180deg);
+}
+.losed .memoji-back {
+  background-color: #f44336;
+}
+.losed:hover {
+  cursor: default;
+}
+/*
+  Modal form    
+*/
+#modal-form {
+  position: fixed;
+  left: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: column nowrap;
+      flex-flow: column nowrap;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.2);
+  z-index: 3;
+  visibility: hidden;
+}
+#modal-form .modal-message {
+  background-color: #fff;
+  text-align: center;
+  font-size: 48px;
+  padding: 30px 100px;
+  font-family: Arial;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: column nowrap;
+      flex-flow: column nowrap;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+#modal-form .modal-message .info {
+  margin-top: 30px;
+  margin-bottom: 40px;
+  display: inline-block;
+  animation: animatedText 0.6s ease alternate infinite;
+  transform-origin: bottom;
+}
+#modal-form .modal-message #play-btn {
+  background: linear-gradient(to left, #22ab93, #19668d);
+  color: #fff;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+  font-size: 20px;
+  outline: none;
+  border: none;
+  padding: 10px 30px;
+}
+#modal-form .modal-message #play-btn:hover {
+  cursor: pointer;
+}
+#modal-form .modal-message #play-btn:active {
+  background-color: #434344;
+}
+#timer {
+  text-align: center;
+  line-height: 36px;
+  font-size: 32px;
+  font-family: arial, sans-serif;
+  margin-top: 5px;
 }
 .icon-memoji,
 .icon-bear-face,
@@ -95,40 +179,45 @@ h1 {
   height: 75px;
   background-position: 0px 0px;
   background-image: url("../img/sprite/sprite.png");
-  background-color: #fff;
+  background-color: transparent;
 }
 .icon-koala-face {
   width: 75px;
   height: 75px;
   background-position: -90px 0px;
   background-image: url("../img/sprite/sprite.png");
-  background-color: #fff;
+  background-color: transparent;
 }
 .icon-lion-face {
   width: 75px;
   height: 75px;
   background-position: 0px -90px;
   background-image: url("../img/sprite/sprite.png");
-  background-color: #fff;
+  background-color: transparent;
 }
 .icon-panda-face {
   width: 75px;
   height: 75px;
   background-position: -90px -90px;
   background-image: url("../img/sprite/sprite.png");
-  background-color: #fff;
+  background-color: transparent;
 }
 .icon-tiger-face {
   width: 75px;
   height: 75px;
   background-position: -180px 0px;
   background-image: url("../img/sprite/sprite.png");
-  background-color: #fff;
+  background-color: transparent;
 }
 .icon-unicorn-face {
   width: 75px;
   height: 75px;
   background-position: -180px -90px;
   background-image: url("../img/sprite/sprite.png");
-  background-color: #fff;
+  background-color: transparent;
+}
+@keyframes animatedText {
+  to {
+    transform: scale(1, 1.4) translateY(-4px);
+  }
 }

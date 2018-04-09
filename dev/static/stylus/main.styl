@@ -21,11 +21,23 @@ h1
   color #434344
   margin 40px auto
 
+// Cards
+
+.wrapper
+  width 595px
+  height 400px
+  height 440px
+  display flex
+  flex-flow row wrap
+  justify-content space-between
+  align-content space-between
+
 .card-side
   width 100%
   height 100%
   position absolute
   display block
+  border-radius 9px
 
 .card-invisible
   @extends .card-side
@@ -35,12 +47,10 @@ h1
   @extends .card-side
   transform-style preserve-3d
   transition transform $card-animation-speed
-  border 5px solid white
-  border-radius 9px
   box-shadow 1px 1px 5px rgba(0,0,0,0.5)
 
-.memoji-card.active
-    transform rotateY( 180deg )
+.active
+  transform rotateY( 180deg )
     
 .memoji-back
   @extends .card-invisible
@@ -54,23 +64,97 @@ h1
   
 .memoji-front
   @extends .card-invisible
-  background linear-gradient(to top right, $primary-color-1, $primary-color-2)
+  border 5px solid white
+  background linear-gradient(to bottom left, $primary-color-1, $primary-color-2)
   
-.wrapper
-  width 595px
-  height 400px
-  height 440px
+
+.memoji-item
+  width 130px
+  height 130px
+  perspective 600px
+  position relative
+  &:hover
+    cursor pointer
+
+// Success and losed cards
+
+.winned
+  transform rotateY( 180deg )
+  .memoji-back
+    background-color $win-color
+  &:hover
+    cursor default
+
+
+.losed
+  transform rotateY( 180deg )
+  .memoji-back
+    background-color $lose-color
+  &:hover
+    cursor default
+
+
+/*
+  Modal form    
+*/
+
+
+
+#modal-form
+  position fixed
+  left 0
   display flex
-  flex-flow row wrap
-  justify-content space-between
-  align-content space-between
-  .memoji-item
-    width 130px
-    height 130px
-    perspective 600px
-    position relative
-    
-    
+  flex-flow column nowrap
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  width: 100%
+  height 100%
+  background-color: rgba(0, 0, 0, .2);
+  z-index: 3;
+  visibility: hidden;
+  .modal-message
+    background-color #ffffff
+    text-align center
+    font-size 48px
+    padding 30px 100px
+    font-family Arial
+    display flex
+    flex-flow column nowrap
+    justify-content space-between
+    .info 
+      margin-top 30px
+      margin-bottom 40px
+      display inline-block
+      animation animatedText .6s ease alternate infinite
+      transform-origin bottom
+    #play-btn 
+      background linear-gradient(to left, #22AB93 , #19668D)
+      color #ffffff
+      box-shadow 1px 1px 1px rgba(0, 0, 0, .5)
+      font-size 20px
+      outline none
+      border none
+      padding 10px 30px
+      &:hover
+        cursor pointer
+      &:active
+        background-color #434344
+
+
+@keyframes animatedText {
+    to {
+        transform: scale(1, 1.4) translateY(-4px);
+    }
+}
+
+#timer
+  text-align center
+  line-height 36px
+  font-size 32px
+  font-family arial, sans-serif
+  margin-top 5px 
+
 // emoji-classes
 
 .icon-memoji
